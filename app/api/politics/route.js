@@ -24,8 +24,7 @@ export async function getStaticProps(request) {
         const result = await collection.find({}, { projection: { _id: 0 } }).toArray();
         await client.close();
         // Process the result
-        //console.log(result,"sdf")
-        
+        //console.log(result,"sdf"
         //return json;
         //whole data of webcontent
         //console.log('**************************************************************');
@@ -75,5 +74,10 @@ export async function GET(request) {
     //console.log(data);
     //const res = await request.json()
     //const data = await fetchdata();
+    
+    response.headers.set('Access-Control-Allow-Origin', '*'); // Allow all origins
+    response.headers.set('Access-Control-Allow-Methods', 'GET, OPTIONS'); // Allow specific methods
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow specific headers
+
     return NextResponse.json(data);
 }
