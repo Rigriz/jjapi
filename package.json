@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "formidable": "^3.5.2",
     "mongodb": "^6.14.2",
     "next": "15.2.2",
     "react": "^19.0.0",
