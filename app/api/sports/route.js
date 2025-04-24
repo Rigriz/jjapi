@@ -34,7 +34,7 @@ export async function GET(request) {
         };
         const result = await collection.find(query, options).toArray();
 
-        const response = NextResponse.json({ politics: result });
+        const response = NextResponse.json({ sports: result });
         response.headers.set('Access-Control-Allow-Origin', '*');
         response.headers.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
         response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
