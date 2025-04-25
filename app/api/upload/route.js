@@ -10,16 +10,19 @@ const client = new MongoClient(uri, {
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-
-    const { title, content, time, date, imageURL, category } = body;
+    const url = new URL(request.url);
+    const title = url.searchParams.get('title');
+    const content = url.searchParams.get('content');
+    const time = url.searchParams.get('time');
+    const date = url.searchParams.get('date');
+    const imageURL = url.searchParams.get('imageURL');
+    const category = url.searchParams.get('category');
 
     if (!title || !content || !time || !date || !imageURL || !category) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), {
         status: 400,
       });
     }
-   //console.log(title,collection,time,date,imageURL,category)
     //console.log("Request Details:");
     //console.log("Method:", request.method);
     //console.log("URL:", request.url);
@@ -28,7 +31,7 @@ export async function POST(request) {
     await client.connect();
     const db = client.db(process.env.DB_NAME); // Replace with your DB name
     const collection = db.collection(category); // Dynamic collection based on category
-
+    //console.log(title, collection, time, date, imageURL, category)
     const newItem = {
       title,
       content,
