@@ -39,9 +39,9 @@ export async function POST(request) {
       date,
       imageURL,
     };
-
+    console.log(newItem);
     const result = await collection.insertOne(newItem);
-
+    
     return new Response(
       JSON.stringify({
         message: 'Item added successfully',
