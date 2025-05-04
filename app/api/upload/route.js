@@ -10,7 +10,8 @@ const client = new MongoClient(uri, {
 
 export async function POST(request) {
   try {
-    const body = await request.json(); // ✅ Read the JSON body
+    const body = await request.json();
+    console.log("Received body:", body); // 🔍 Add this
 
     const { title, content, time, date, imageUrl, category } = body;
 
