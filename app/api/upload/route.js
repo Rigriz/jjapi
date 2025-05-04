@@ -10,15 +10,11 @@ const client = new MongoClient(uri, {
 
 export async function POST(request) {
   try {
-    const url = new URL(request.url);
-    const title = url.searchParams.get('title');
-    const content = url.searchParams.get('content');
-    const time = url.searchParams.get('time');
-    const date = url.searchParams.get('date');
-    const imageURL = url.searchParams.get('imageURL');
-    const category = url.searchParams.get('category');
+    const body = await request.json(); // ✅ Read the JSON body
 
-    if (!title || !content || !time || !date || !imageURL || !category) {
+    const { title, content, time, date, imageUrl, category } = body;
+
+    if (!title || !content || !time || !date || !imageUrl || !category) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), {
         status: 400,
       });
@@ -37,7 +33,7 @@ export async function POST(request) {
       content,
       time,
       date,
-      imageURL,
+      imageUrl, // ✅ Note: must match the client naming
     };
     console.log(newItem);
     const result = await collection.insertOne(newItem);
