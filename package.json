@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
     "formidable": "^3.5.2",
     "mongodb": "^6.14.2",
     "next": "15.2.2",
